@@ -23,7 +23,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
