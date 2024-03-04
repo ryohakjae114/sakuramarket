@@ -5,6 +5,7 @@ gem 'rails', '7.1.3.2'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'devise'
 gem 'haml-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails'
