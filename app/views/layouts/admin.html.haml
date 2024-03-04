@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Sakuramarket
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+  %body
+    %nav.navbar.navbar-expand-lg.bg-body-tertiary.mb-5
+      .container-fluid
+        %a.navbar-brand{href: "#"} 管理者画面
+        %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", type: "button"}
+          %span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item
+              %a.nav-link.active{"aria-current" => "page", href: "#"} #
+            - if admin_signed_in?
+              %li.nav-item.dropdown
+                %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+                  Dropdown link
+                %ul.dropdown-menu
+                  %li
+                    %a.dropdown-item{href: "#"} Action
+                  %li
+                    %a.dropdown-item{href: "#"} Another action
+                  %li
+                    %a.dropdown-item{href: "#"} Something else here
+            - else
+              %li.nav-item
+                = link_to 'ログイン', new_admin_session_path, class: 'nav-link'
+    .container
+      = yield
