@@ -18,5 +18,15 @@ RSpec.describe '商品管理' do
         end
       end
     end
+
+    describe '商品一覧' do
+      let!(:food) { create(:food) }
+      it '商品一覧画面を閲覧できること' do
+        expect do
+          visit admins_foods_path
+          expect('page').to have_css('.card')
+        end
+      end
+    end
   end
 end

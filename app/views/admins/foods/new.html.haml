@@ -1,6 +1,7 @@
 .col-6.mx-auto
   %h1 商品登録画面
   = simple_form_for [:admins, @food] do |f|
+    = f.input :image
     = f.input :name
     = f.input :price_without_tax
     = f.input :description

@@ -1,4 +1,8 @@
 class Admins::FoodsController < AdminsController
+
+  def index
+    @foods = Food.all
+  end
   def new
     @food = Food.new
   end
@@ -18,6 +22,6 @@ class Admins::FoodsController < AdminsController
   private
 
   def food_params
-    params.require(:food).permit(:name, :price_without_tax, :description, :displayed, :position)
+    params.require(:food).permit(:name, :price_without_tax, :description, :displayed, :position, :image)
   end
 end
