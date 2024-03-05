@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      food: 商品
+    attributes:
+      food:
+        name: '商品名'
+        price_without_tax: '金額(税抜)'
+        description: '商品説明'
+        displayed: '購入画面に表示する'
+        position: '並び順'
+  helpers:
+    submit:
+      create: '登録する'
+      update: '更新する'
+      submit: '保存する'
+  simple_form:
+    labels:
+      food:
+        name: '商品名'
+        price_without_tax: '金額(税抜)'
+        description: '商品説明'
+        displayed: '購入画面に表示する'
+        position: '並び順'

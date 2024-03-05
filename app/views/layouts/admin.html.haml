@@ -9,7 +9,7 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
   %body
-    %nav.navbar.navbar-expand-lg.bg-body-tertiary.mb-5
+    %nav.navbar.navbar-expand-lg.bg-body-tertiary
       .container-fluid
         %a.navbar-brand{href: "#"} 管理者画面
         %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", type: "button"}
@@ -32,5 +32,9 @@
             - else
               %li.nav-item
                 = link_to 'ログイン', new_admin_session_path, class: 'nav-link'
-    .container
+    - flash.each do |message_type, message|
+      %div{ class: "alert alert-#{message_type == 'notice'? 'success' : 'danger' } fade show alert-dismissible" }
+        = message
+        %button.btn-close{'aria-label' => 'Close', 'data-bs-dismiss' => 'alert', type: 'button'}
+    .container.mt-5
       = yield
