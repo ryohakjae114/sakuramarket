@@ -1,7 +1,17 @@
 class Admins::FoodsController < AdminsController
-  before_action :set_food, only: %i[ edit update ]
+  before_action :set_food, only: %i[ edit update move_higher move_lower ]
   def index
-    @foods = Food.all
+    @foods = Food.all.order(:position)
+  end
+
+  def move_higher
+    @food.move_higher
+    redirect_to admins_foods_url
+  end
+
+  def move_lower
+    @food.move_lower
+    redirect_to admins_foods_url
   end
   def new
     @food = Food.new

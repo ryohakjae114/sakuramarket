@@ -13,4 +13,13 @@
           %h2.card-title.display-one-line.fs-5= food.name
           %p.card-text.display-one-line= "#{food.price_with_tax}円"
           %p.card-text.display-three-line= food.description
-          = link_to '商品詳細', edit_admins_food_path(food), class: 'btn btn-primary'
+          .d-flex
+            = link_to '商品詳細', edit_admins_food_path(food), class: 'btn btn-primary h-25 mt-auto'
+            .ms-auto
+              %div
+                並び順
+                %i.fa-solid.fa-arrow-down-wide-short
+              = link_to move_higher_admins_food_path(food), class: 'ms-3 fs-1 text-secondary text-decoration-none' do
+                %i.fa-solid.fa-arrow-up
+              = link_to move_lower_admins_food_path(food), class: 'ms-3 fs-1 text-secondary text-decoration-none' do
+                %i.fa-solid.fa-arrow-down

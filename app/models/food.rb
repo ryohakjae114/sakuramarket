@@ -1,6 +1,7 @@
 class Food < ApplicationRecord
   has_many :purchase_details
 
+  acts_as_list
   mount_uploader :image, ImageUploader
 
   TAX_RATE = 0.1

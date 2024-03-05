@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby '3.2.2'
 gem 'rails', '7.1.3.2'
 
+gem 'acts_as_list'
 gem 'bootsnap', require: false
 gem 'carrierwave'
 gem 'cssbundling-rails'

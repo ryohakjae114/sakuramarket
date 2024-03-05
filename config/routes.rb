@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     root 'foods#new'
-    resources :foods, only: %i[ index new create edit update ]
+    resources :foods, only: %i[ index new create edit update ] do
+      member do
+        get :move_higher
+        get :move_lower
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
