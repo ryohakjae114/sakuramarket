@@ -4,7 +4,7 @@ ja:
       food: 商品
     attributes:
       food:
-        image: '写真商品'
+        image: '商品写真'
         name: '商品名'
         price_without_tax: '金額(税抜)'
         description: '商品説明'

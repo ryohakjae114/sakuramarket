@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     root 'foods#new'
-    resources :foods, only: %i[ index new create ]
+    resources :foods, only: %i[ index new create edit update ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

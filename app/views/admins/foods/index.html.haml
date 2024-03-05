@@ -6,8 +6,11 @@
       .card
         = image_tag(food.image.url, class: 'card-img-top foods__index-card-image')
         .card-body.border-top
+          - if food.displayed
+            %span.badge.text-bg-success.mb-2 公開中
+          - else
+            %span.badge.text-bg-secondary.mb-2 非公開
           %h2.card-title.display-one-line.fs-5= food.name
           %p.card-text.display-one-line= "#{food.price_with_tax}円"
           %p.card-text.display-three-line= food.description
-          -# 商品詳細を作ったらリンクを差し込む
-          = link_to '商品詳細', '#', class: 'btn btn-primary'
+          = link_to '商品詳細', edit_admins_food_path(food), class: 'btn btn-primary'

@@ -1,5 +1,5 @@
 class Admins::FoodsController < AdminsController
-
+  before_action :set_food, only: %i[ edit update ]
   def index
     @foods = Food.all
   end
@@ -11,11 +11,23 @@ class Admins::FoodsController < AdminsController
     @food = Food.new(food_params)
     if @food.save
       flash[:notice] = '登録しました。'
-      # 一覧画面を作成後に↓のリダイレクト先を修正する
-      redirect_to new_admins_food_path
+      redirect_to admins_foods_url
     else
       flash[:alert] = '登録に失敗しました。'
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @food.update(food_params)
+      flash[:notice] = '変更しました。'
+      redirect_to edit_admins_food_url(@food)
+    else
+      flash[:alert] = '変更できませんでした。'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -23,5 +35,9 @@ class Admins::FoodsController < AdminsController
 
   def food_params
     params.require(:food).permit(:name, :price_without_tax, :description, :displayed, :position, :image)
+  end
+
+  def set_food
+    @food = Food.find(params[:id])
   end
 end
