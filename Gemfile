@@ -19,6 +19,7 @@ gem 'turbo-rails'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri windows ]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -26,9 +27,9 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'capybara'
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development

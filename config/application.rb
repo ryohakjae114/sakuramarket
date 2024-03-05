@@ -28,6 +28,8 @@ module Sakuramarket
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
+      g.model_specs false
+      g.request_specs false
       g.view_specs false
       g.controller_specs false
       g.helper_specs false
