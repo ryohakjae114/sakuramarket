@@ -40,5 +40,16 @@ RSpec.describe '商品管理' do
         end
       end
     end
+
+    describe '商品削除' do
+      let(:food) { create(:food) }
+      it '商品を削除できること' do
+        expect do
+          visit admins_food_path(:food)
+          click '削除'
+          expect('page').to have_content '削除しました。'
+        end
+      end
+    end
   end
 end

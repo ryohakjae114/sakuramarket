@@ -1,5 +1,5 @@
 class Admins::FoodsController < AdminsController
-  before_action :set_food, only: %i[ edit update move_higher move_lower ]
+  before_action :set_food, only: %i[ edit update destroy move_higher move_lower ]
   def index
     @foods = Food.all.order(:position)
   end
@@ -39,6 +39,12 @@ class Admins::FoodsController < AdminsController
       flash[:alert] = '変更できませんでした。'
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @food.destroy!
+    flash[:notice] = '削除しました。'
+    redirect_to admins_foods_url
   end
 
   private
