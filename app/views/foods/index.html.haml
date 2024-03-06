@@ -6,7 +6,7 @@
       .card
         = image_tag(food.image.url, class: 'card-img-top foods-index__card-image')
         .card-body.border-top
-          %h2.card-title.display-one-line.fs-5= food.name
+          %h2.card-title.display-one-line.fs-5.btn-secondary= food.name
           %p.card-text.display-one-line= "#{food.price_with_tax}円"
           %p.card-text.display-three-line= food.description
           = link_to '商品詳細', food_path(food), class: 'btn btn-primary h-25 mt-auto'

@@ -8,3 +8,9 @@
     %p= "#{@food.price_with_tax}円"
     %h2.mt-2.fs-4 商品説明
     %p= @food.description
+
+    = simple_form_for @purchase_detail do |f|
+      = f.input :number, wrapper_html: { class: 'd-inline-block' }
+      .d-none
+        = f.input :food_id, as: :hidden, class: 'd-none', input_html: { value: @food.id }
+      = f.submit 'カートに追加', class: 'btn btn-primary mt-auto w-auto ms-3'

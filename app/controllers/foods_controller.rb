@@ -6,6 +6,7 @@ class FoodsController < ApplicationController
   end
 
   def show
+    @purchase_detail = PurchaseDetail.new
   end
 
   def food_params
