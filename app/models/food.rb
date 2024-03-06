@@ -1,10 +1,12 @@
 class Food < ApplicationRecord
+  TAX_RATE = 0.1
+
   has_many :purchase_details
 
   acts_as_list
   mount_uploader :image, ImageUploader
 
-  TAX_RATE = 0.1
+  scope :displayed, -> { where(displayed: true) }
 
   def price_with_tax
     (price_without_tax * (1+TAX_RATE)).floor

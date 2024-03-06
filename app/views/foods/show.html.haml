@@ -1,0 +1,10 @@
+%h1 商品詳細画面
+
+.mt-5.row
+  .col-6
+    = image_tag @food.image.url, class: 'd-block w-75'
+  .col-6.foods-show__text
+    %h2.fs-4 価格
+    %p= "#{@food.price_with_tax}円"
+    %h2.mt-2.fs-4 商品説明
+    %p= @food.description
