@@ -9,4 +9,32 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
   %body
-    = yield
+    %nav.navbar.navbar-expand-lg.bg-body-tertiary
+      .container-fluid
+        %a.navbar-brand{href: "#"} さくらまーけっと
+        %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", type: "button"}
+          %span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item
+              %a.nav-link.active{"aria-current" => "page", href: "#"} #
+            - if admin_signed_in?
+              %li.nav-item.dropdown
+                %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+                  Dropdown link
+                %ul.dropdown-menu
+                  %li
+                    %a.dropdown-item{href: "#"} Action
+                  %li
+                    %a.dropdown-item{href: "#"} Another action
+                  %li
+                    %a.dropdown-item{href: "#"} Something else here
+            - else
+              %li.nav-item
+                = link_to 'ログイン', new_admin_session_path, class: 'nav-link'
+    - flash.each do |message_type, message|
+      %div{ class: "alert alert-#{message_type == 'notice'? 'success' : 'danger' } fade show alert-dismissible" }
+        = message
+        %button.btn-close{'aria-label' => 'Close', 'data-bs-dismiss' => 'alert', type: 'button'}
+    .container.mt-5
+      = yield

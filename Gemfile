@@ -9,6 +9,8 @@ gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'haml-rails'
+# プロジェクトの開発が終わったら削除する
+gem 'erb2haml'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'pg'
