@@ -47,7 +47,6 @@ RSpec.describe 'カート機能' do
         visit purchase_details_path
         fill_in 'purchase_detail_number', with: 30
         click_button '数量を変更'
-        save_and_open_page
         expect(page).to have_content(30*food.price_with_tax)
       end
     end
