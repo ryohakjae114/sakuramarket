@@ -18,9 +18,13 @@ class PurchaseDetailsController < ApplicationController
 
   def update
     @purchase_detail = current_user.cart.purchase_details.find(params[:id])
-    @purchase_detail.update!(purchase_detail_params)
-    flash[:notice] = '数量を変更しました。'
-    redirect_to purchase_details_url
+    if @purchase_detail.update(purchase_detail_params)
+      flash[:notice] = '数量を変更しました。'
+      redirect_to purchase_details_url
+    else
+      flash[:alert] = '数量を変更できませんでした。'
+      redirect_back fallback_location: root_path
+    end
   end
 
   def add_number
@@ -28,6 +32,13 @@ class PurchaseDetailsController < ApplicationController
     @purchase_detail.add_number!((params[:purchase_detail][:number]).to_i)
     flash[:notice] = 'カートに追加しました。'
     redirect_to food_path(@purchase_detail.food)
+  end
+
+  def destroy
+    purchase_detail =  current_user.cart.purchase_details.find(params[:id])
+    purchase_detail.destroy!
+    flash[:notice] = '商品を削除しました。'
+    redirect_to purchase_details_url
   end
 
   private

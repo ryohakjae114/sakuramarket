@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
   resources :foods, only: %i[ index show ]
-  resources :purchase_details, only: %i[ index create update ] do
+  resources :purchase_details, only: %i[ index create update destroy] do
     member do
       patch :add_number
     end

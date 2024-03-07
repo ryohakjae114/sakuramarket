@@ -7,6 +7,7 @@
       %th 数量
       %th
       %th 価格(税込)
+      %th
   %tbody
     - @purchase_details.each do |purchase_detail|
       %tr
@@ -16,3 +17,4 @@
           %td= f.submit '数量を変更', class: 'btn btn-outline-dark'
           -# %td= purchase_detail.number
         %td= purchase_detail.total_price_with_tax
+        %td= button_to '削除', purchase_detail_path(purchase_detail), class: 'btn btn-danger', method: :delete, data: { turbo_confirm: "カートから削除しますか？" }
