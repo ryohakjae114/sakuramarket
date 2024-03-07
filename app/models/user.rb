@@ -7,4 +7,16 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :address, presence: true
   validates :last_name, presence: true
+
+  def cart
+    if self.purchases.find_by(paid_at: nil).nil?
+      self.purchases.create
+    else
+      self.purchases.find_by(paid_at: nil)
+    end
+  end
+
+  def include_in_cart?(food)
+    self.cart.purchase_details.find_by(food_id: food.id).present?
+  end
 end

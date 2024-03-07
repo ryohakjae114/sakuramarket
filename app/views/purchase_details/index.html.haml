@@ -1,0 +1,18 @@
+%h1 カート詳細
+
+%table.table.mt-4
+  %thead.table-secondary
+    %tr
+      %th 商品名
+      %th 数量
+      %th
+      %th 価格(税込)
+  %tbody
+    - @purchase_details.each do |purchase_detail|
+      %tr
+        %td= purchase_detail.food.name
+        = simple_form_for purchase_detail do |f|
+          %td= f.input :number, label: false, wrapper_html: { class: 'w-50' }
+          %td= f.submit '数量を変更', class: 'btn btn-outline-dark'
+          -# %td= purchase_detail.number
+        %td= purchase_detail.total_price_with_tax
