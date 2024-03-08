@@ -1,7 +1,12 @@
 %h1.mb-5 購入画面
 
 = link_to 'カート詳細画面に戻る', cart_details_path, class: 'btn btn-outline-dark'
-%h2.float-end.ms-auto= "合計#{@purchase.total_purchase_details_price}"
+
+.float-end
+  %p.fs-4= "合計金額#{@purchase.total_price}"
+  %p= "商品合計金額#{@purchase.total_purchase_details_price}"
+  %p= "配送料#{@purchase.postage_price}"
+  %p= "手数料#{@purchase.charge_price}"
 
 %table.table.mt-4
   %thead.table-secondary
@@ -19,8 +24,8 @@
         %td= cart_detail.total_price_with_tax
 
 = simple_form_for @purchase, url: purchases_path, method: :post do |f|
-  = f.input :delivery_on
-  = f.input :delivery_time_zone, collection: Purchase::TIME_ZONE_DELIVERY_AVAILABLE.map { |time_zone| [ "#{time_zone.gsub('-', '時〜')}時", time_zone ]}, include_blank: false
+  = f.input :delivery_on, collection: Purchase.dates_of_delivery_available, include_blank: false
+  = f.input :delivery_time_zone, collection: Purchase::TIME_ZONES_DELIVERY_AVAILABLE.map { |time_zone| [ "#{time_zone.gsub('-', '時~')}時", time_zone ]}, include_blank: false
   = f.input :address, input_html: { value: current_user.address }
   = f.input :id, as: :hidden, input_value: { value: @purchase.id }
   = f.submit '購入を確定する', class: 'btn btn-primary fs-5 float-end', data: { turbo_confirm: '購入を確定しますか？' }

@@ -5,6 +5,7 @@ gem 'rails', '7.1.3.2'
 
 gem 'acts_as_list'
 gem 'bootsnap', require: false
+gem 'business_time'
 gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'

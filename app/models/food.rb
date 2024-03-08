@@ -1,6 +1,4 @@
 class Food < ApplicationRecord
-  TAX_RATE = 0.1
-
   has_many :purchase_details
 
   acts_as_list
