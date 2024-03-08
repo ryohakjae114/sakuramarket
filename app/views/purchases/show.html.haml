@@ -1,0 +1,24 @@
+%h1.mb-5 購入履歴詳細
+
+= link_to '一覧に戻る', purchases_path, class: 'btn btn-outline-dark'
+
+.float-end
+  %p.fs-4= "合計金額#{@purchase.total_price}"
+  %p= "商品合計金額#{@purchase.total_purchase_details_price}"
+  %p= "配送料#{@purchase.postage_price}"
+  %p= "手数料#{@purchase.charge_price}"
+
+%table.table.mt-4
+  %thead.table-secondary
+    %tr
+      %th 商品名
+      %th 商品単価(税込)
+      %th 数量
+      %th 価格(税込)
+  %tbody
+    - @purchase.purchase_details.each do |purchase_detail|
+      %tr
+        %td= purchase_detail.food.name
+        %td= purchase_detail.food.price_with_tax
+        %td= purchase_detail.number
+        %td= purchase_detail.total_price_with_tax

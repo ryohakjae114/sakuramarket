@@ -1,0 +1,18 @@
+%h1 購入履歴一覧
+
+%table.table.mt-4
+  %thead.table-secondary
+    %tr
+      %th 注文id
+      %th ご購入日
+      %th お届け予定日
+      %th お届け予定時間帯
+      %th 合計金額
+  %tbody
+    - @purchases.each do |purchase|
+      %tr
+        %td= link_to purchase.id, purchase_path(purchase)
+        %td= purchase.paid_at
+        %td= purchase.delivery_on
+        %td= "#{purchase.delivery_time_zone.gsub('-', '時~')}時"
+        %td= purchase.total_price

@@ -1,5 +1,9 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase
+  before_action :set_purchase, only: %i[ new create show]
+
+  def index
+    @purchases = current_user.purchases.where.not(paid_at: nil).order(:paid_at)
+  end
 
   def new
     @cart_details = @purchase.purchase_details.order(:id)
@@ -16,10 +20,13 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def set_purchase
-    @purchase = current_user.purchases.find(params[:purchase][:id].to_i)
+    @purchase = current_user.purchases.find(params[:id] || params[:purchase][:id].to_i)
   end
 
   def purchase_params

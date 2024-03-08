@@ -22,6 +22,8 @@
               %li.nav-item
                 = link_to 'カート', cart_details_path, class: 'nav-link'
               %li.nav-item
+                = link_to '購入履歴', purchases_path, class: 'nav-link'
+              %li.nav-item
                 = button_to destroy_user_session_path(@food), { class: 'nav-link', method: :delete, data: { turbo_confirm: "ログアウトしますか？" } } do
                   ログアウト
             - else
