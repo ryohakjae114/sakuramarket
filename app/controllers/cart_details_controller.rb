@@ -2,6 +2,7 @@ class CartDetailsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @cart = current_user.cart
     @cart_details = current_user.cart.purchase_details.order(:id)
   end
 

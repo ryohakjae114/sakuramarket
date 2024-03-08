@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_021255) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_063914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_021255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "address"
-    t.date "delivery_at"
+    t.date "delivery_on"
     t.string "delivery_time_zone"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end

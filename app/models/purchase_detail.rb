@@ -2,8 +2,6 @@ class PurchaseDetail < ApplicationRecord
   belongs_to :purchase
   belongs_to :food
 
-  attr_accessor :user_trying_purchase
-
   validates :number, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1}
 
   def set_purchase(user)

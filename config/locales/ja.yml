@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      food: 商品
+      food: '商品'
     attributes:
       food:
         image: '商品写真'
@@ -25,3 +25,7 @@ ja:
         position: '並び順'
       purchase_detail:
         number: '数量'
+      purchase:
+        delivery_on: '配送希望日'
+        delivery_time_zone: '配送希望時間'
+        address: 'お届け先住所'
