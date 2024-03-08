@@ -8,6 +8,7 @@ gem 'bootsnap', require: false
 gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'enumerize'
 gem 'haml-rails'
 # プロジェクトの開発が終わったら削除する
 gem 'erb2haml'

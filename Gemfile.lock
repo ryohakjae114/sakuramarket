@@ -123,6 +123,8 @@ GEM
     dockerfile-rails (1.6.6)
       rails (>= 3.0.0)
     drb (2.2.1)
+    enumerize (2.7.0)
+      activesupport (>= 3.2)
     erb2haml (0.1.5)
       html2haml
     erubi (1.12.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dockerfile-rails (>= 1.6)
+  enumerize
   erb2haml
   factory_bot_rails
   haml-rails
