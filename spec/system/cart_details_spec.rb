@@ -13,7 +13,7 @@ RSpec.describe 'カート機能' do
       let(:purchase) { create(:purchase, user: user) }
       let!(:purchase_detail) { create(:purchase_detail, food: food, purchase: purchase) }
       it 'カート一覧画面を閲覧できること' do
-        visit purchase_details_path
+        visit cart_details_path
         expect(page).to have_content('はっつぁん')
       end
     end
@@ -24,7 +24,7 @@ RSpec.describe 'カート機能' do
         visit food_path(food)
         fill_in '数量', with: '10'
         click_button 'カートに追加'
-        visit purchase_details_path
+        visit cart_details_path
         expect(page).to have_content(food.name)
       end
 
@@ -34,7 +34,7 @@ RSpec.describe 'カート機能' do
         visit food_path(purchase_detail.food)
         fill_in '数量', with: 10
         click_button 'カートに追加'
-        visit purchase_details_path
+        visit cart_details_path
         expect(page).to have_content(11*food.price_with_tax)
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe 'カート機能' do
       let(:food) { create(:food) }
       let!(:purchase_detail) { create(:purchase_detail, purchase: purchase, food: food) }
       it 'カート詳細からカートの中の商品の数量を変更できること' do
-        visit purchase_details_path
+        visit cart_details_path
         fill_in 'purchase_detail_number', with: 30
         click_button '数量を変更'
         expect(page).to have_content(30*food.price_with_tax)
@@ -56,7 +56,7 @@ RSpec.describe 'カート機能' do
       let(:food) { create(:food) }
       let!(:purchase_detail) { create(:purchase_detail, purchase: purchase, food: food) }
       it 'カートの商品を削除できること' do
-        visit purchase_details_path
+        visit cart_details_path
         click_on '削除'
         expect(page).not_to have_content(food.name)
       end
