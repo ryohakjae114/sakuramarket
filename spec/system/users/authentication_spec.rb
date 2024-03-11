@@ -36,4 +36,13 @@ RSpec.describe 'ユーザ認証' do
       expect(page).to have_content 'ログアウトしました。'
     end
   end
+
+  describe 'アカウント編集' do
+    let!(:user) { create(:user) }
+    it 'アカウント編集画面を閲覧できること' do
+      sign_in user
+      visit edit_user_registration_path
+      expect(page).to have_content 'アカウント編集'
+    end
+  end
 end
