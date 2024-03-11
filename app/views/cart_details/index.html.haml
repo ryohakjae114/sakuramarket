@@ -1,6 +1,7 @@
 %h1 カート詳細
 
-= link_to '購入する', new_purchase_path(purchase: { id: @cart.id}), class: 'btn btn-primary float-end mb-3 fs-5 me-5'
+- if @cart_details.present?
+  = link_to '購入する', new_purchase_path(purchase: { id: @cart.id}), class: 'btn btn-primary float-end mb-3 fs-5 me-5'
 
 %table.table.mt-4
   %thead.table-secondary

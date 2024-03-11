@@ -11,7 +11,7 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase.paid_at = Time.current
-    if @purchase.update(purchase_params)
+    if @purchase.purchase_details.present? && @purchase.update(purchase_params)
       flash[:notice] = '購入しました。'
       redirect_to root_url
     else
