@@ -32,7 +32,6 @@ RSpec.describe '商品管理' do
         visit edit_admins_food_path(food)
         fill_in '商品名', with: 'はっちゃん'
         click_button '変更'
-        save_and_open_page
         expect(find('input[name="food[name]"]').value).to eq 'はっちゃん'
       end
     end
