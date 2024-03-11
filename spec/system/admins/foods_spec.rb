@@ -12,43 +12,37 @@ RSpec.describe '商品管理' do
         visit new_admins_food_path
         fill_in '商品名', with: 'ぶどう'
         fill_in '金額(税抜)', with: '200'
-        expect do
-          click '登録'
-          expect('page').to have_content '登録しました。'
-        end
+        click_button '登録'
+        expect(page).to have_content '登録しました。'
+        # TODO 一覧画面にデータが追加されたことを確認する
       end
     end
 
     describe '商品一覧' do
-      let(:food) { create(:food) }
+      let!(:food) { create(:food) }
       it '商品一覧画面を閲覧できること' do
-        expect do
-          visit admins_foods_path
-          expect('page').to have_css('.card')
-        end
+        visit admins_foods_path
+        expect(page).to have_content(food.name)
       end
     end
 
     describe '商品情報変更' do
-      let(:food) { create(:food) }
+      let!(:food) { create(:food) }
       it '商品情報を変更できること' do
-        expect do
-          visit admins_food_path(:food)
-          fill_in '商品名', with: 'はっちゃん'
-          click '変更'
-          expect('page').to have_content 'はっちゃん'
-        end
+        visit edit_admins_food_path(food)
+        fill_in '商品名', with: 'はっちゃん'
+        click_button '変更'
+        save_and_open_page
+        expect(find('input[name="food[name]"]').value).to eq 'はっちゃん'
       end
     end
 
     describe '商品削除' do
       let(:food) { create(:food) }
       it '商品を削除できること' do
-        expect do
-          visit admins_food_path(:food)
-          click '削除'
-          expect('page').to have_content '削除しました。'
-        end
+        visit edit_admins_food_path(food)
+        click_button '削除'
+        expect(page).to have_content '削除しました。'
       end
     end
   end

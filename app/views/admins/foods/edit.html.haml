@@ -7,7 +7,7 @@
   %p.mt-5 現在の商品写真
   = image_tag(@food.image.url, class: 'w-25 mb-5')
   = simple_form_for [:admins, @food] do |f|
-    = f.input :image, input_html: { value: @food.image.url }, label: '新しい商品写真'
+    = f.input :image, label: '新しい商品写真'
     = f.input :name
     = f.input :price_without_tax
     = f.input :description

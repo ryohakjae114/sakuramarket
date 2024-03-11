@@ -11,7 +11,7 @@ RSpec.describe '購入機能' do
     describe '購入' do
       let(:food) { create(:food) }
       let(:purchase) { create(:purchase, user: user) }
-      let(:purchase_detail) { create(:purchase_detail, food: food, purchase: purchase) }
+      let!(:purchase_detail) { create(:purchase_detail, food: food, purchase: purchase) }
       it 'カートの内容を購入できること' do
         visit new_purchase_path(purchase: { id: purchase.id })
         click_button '購入を確定する'
@@ -37,7 +37,6 @@ RSpec.describe '購入機能' do
       let!(:purchase_detail) { create(:purchase_detail, food: food, purchase: purchase) }
       it '購入詳細画面を閲覧できること' do
         visit purchase_path(purchase)
-        save_and_open_page
         expect(page).to have_content(food.name)
       end
     end
