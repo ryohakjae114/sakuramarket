@@ -11,7 +11,7 @@
     %h2.mt-4.fs-4 商品説明
     %p= @food.description
 
-    - if current_user.include_in_cart?(@food)
+    - if current_user&.include_in_cart?(@food)
       = simple_form_for @cart_detail, url: add_number_cart_detail_path do |f|
         = f.input :number, wrapper_html: { class: 'd-inline-block' }, input_html: { value: 1, min: 1 }
         .d-none

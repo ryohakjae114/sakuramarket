@@ -7,10 +7,10 @@ class FoodsController < ApplicationController
 
   def show
     @cart_detail =
-      if current_user.include_in_cart?(@food)
-        current_user.cart.purchase_details.find_by(food_id: @food.id)
+      if current_user&.include_in_cart?(@food)
+          current_user.cart.purchase_details.find_by(food_id: @food.id)
       else
-        current_user.cart.purchase_details.build
+        PurchaseDetail.new
       end
   end
 
