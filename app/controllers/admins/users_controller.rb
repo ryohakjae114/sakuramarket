@@ -1,4 +1,4 @@
-class Admins::UsersController < ApplicationController
+class Admins::UsersController < AdminsController
   before_action :set_food, only: %i[ destroy ]
 
   def index
