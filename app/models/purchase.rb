@@ -7,7 +7,7 @@ class Purchase < ApplicationRecord
 
   enumerize :delivery_time_zone, in: TIME_ZONES_DELIVERY_AVAILABLE
 
-  has_many :purchase_details
+  has_many :purchase_details, dependent: :destroy
   belongs_to :user
 
   validate :date_delivery_not_available

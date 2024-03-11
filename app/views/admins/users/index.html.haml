@@ -1,0 +1,22 @@
+%h1 ユーザ一覧画面
+
+%table.table.mt-4
+  %thead.table-secondary
+    %tr
+      %th メールアドレス
+      %th 姓
+      %th 名
+      %th 住所
+      %th 作成日
+      %th 更新日
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.last_name
+        %td= user.first_name
+        %td= user.address
+        %td= user.created_at
+        %td= user.updated_at
+        %td= button_to '削除', admins_user_path(user), class: 'btn btn-danger', method: :delete, data: { turbo_confirm: "ユーザを削除しますか？" }

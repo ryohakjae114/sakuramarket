@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     root 'foods#new'
+    resources :users, only: %i[ index destroy ]
     resources :foods, only: %i[ index new create edit update destroy ] do
       member do
         get :move_higher
