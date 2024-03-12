@@ -21,13 +21,13 @@ module Sakuramarket
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.i18n.default_locale = :ja
 
     config.generators do |g|
-      g.test_framework :rspec, fixture: true
+      g.test_framework :rspec, fixture: false
       g.model_specs false
       g.request_specs false
       g.view_specs false
