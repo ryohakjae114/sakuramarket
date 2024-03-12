@@ -16,11 +16,11 @@
           %span.navbar-toggler-icon
         #navbarNavDropdown.collapse.navbar-collapse
           %ul.navbar-nav
+            %li.nav-item
+            = link_to '商品', foods_path, class: 'nav-link'
+            %li.nav-item
+              = link_to 'カート', cart_details_path, class: 'nav-link'
             - if user_signed_in?
-              %li.nav-item
-                = link_to '商品', foods_path, class: 'nav-link'
-              %li.nav-item
-                = link_to 'カート', cart_details_path, class: 'nav-link'
               %li.nav-item
                 = link_to '購入履歴', purchases_path, class: 'nav-link'
               %li.nav-item
