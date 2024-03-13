@@ -11,7 +11,7 @@
           - else
             %span.badge.text-bg-secondary.mb-2 非公開
           %h2.card-title.display-one-line.fs-5= food.name
-          %p.card-text.display-one-line= "#{food.price_with_tax}円"
+          %p.card-text.display-one-line= number_to_currency(food.price_with_tax)
           %p.card-text.display-three-line= food.description
           .d-flex
             = link_to '商品詳細', edit_admins_food_path(food), class: 'btn btn-primary h-25 mt-auto'

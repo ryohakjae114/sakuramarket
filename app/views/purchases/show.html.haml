@@ -3,10 +3,10 @@
 = link_to '一覧に戻る', purchases_path, class: 'btn btn-outline-dark'
 
 .float-end
-  %p.fs-4= "合計金額#{@purchase.total_price}"
-  %p= "商品合計金額#{@purchase.total_purchase_details_price}"
-  %p= "配送料#{@purchase.postage_price}"
-  %p= "手数料#{@purchase.charge_price}"
+  %p.fs-4= "合計金額#{number_to_currency(@purchase.total_price)}"
+  %p= "商品合計金額#{number_to_currency(@purchase.total_purchase_details_price)}"
+  %p= "配送料#{number_to_currency(@purchase.postage_price)}"
+  %p= "手数料#{number_to_currency(@purchase.charge_price)}"
 
 %table.table.mt-4
   %thead.table-secondary
@@ -19,6 +19,6 @@
     - @purchase.purchase_details.each do |purchase_detail|
       %tr
         %td= purchase_detail.food.name
-        %td= purchase_detail.food.price_with_tax
+        %td= number_to_currency(purchase_detail.food.price_with_tax)
         %td= purchase_detail.number
-        %td= purchase_detail.total_price_with_tax
+        %td= number_to_currency(purchase_detail.total_price_with_tax)

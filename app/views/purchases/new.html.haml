@@ -3,10 +3,10 @@
 = link_to 'カート詳細画面に戻る', cart_path, class: 'btn btn-outline-dark'
 
 .float-end
-  %p.fs-4= "合計金額#{@purchase.total_price}"
-  %p= "商品合計金額#{@purchase.total_purchase_details_price}"
-  %p= "配送料#{@purchase.postage_price}"
-  %p= "手数料#{@purchase.charge_price}"
+  %p.fs-4= "合計金額#{number_to_currency(@purchase.total_price)}"
+  %p= "商品合計金額#{number_to_currency(@purchase.total_purchase_details_price)}"
+  %p= "配送料#{number_to_currency(@purchase.postage_price)}"
+  %p= "手数料#{number_to_currency(@purchase.charge_price)}"
 
 %table.table.mt-4
   %thead.table-secondary
@@ -19,9 +19,9 @@
     - @purchase_details.each do |purchase_detail|
       %tr
         %td= purchase_detail.food.name
-        %td= purchase_detail.food.price_with_tax
+        %td= number_to_currency(purchase_detail.food.price_with_tax)
         %td= purchase_detail.number
-        %td= purchase_detail.total_price_with_tax
+        %td= number_to_currency(purchase_detail.total_price_with_tax)
 
 = simple_form_for @purchase, url: purchases_path, method: :post do |f|
   = f.input :delivery_on, collection: Purchase.dates_of_delivery_available, include_blank: false

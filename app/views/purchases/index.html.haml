@@ -15,4 +15,4 @@
         %td= purchase.paid_at
         %td= purchase.delivery_on
         %td= "#{purchase.delivery_time_zone.gsub('-', '時~')}時"
-        %td= purchase.total_price
+        %td= number_to_currency(purchase.total_price)

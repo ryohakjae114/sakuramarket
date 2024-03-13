@@ -7,7 +7,7 @@
     %h2.fs-4 商品名
     %p= @food.name
     %h2.mt-4.fs-4 価格(税込)
-    %p= "#{@food.price_with_tax}円"
+    %p= number_to_currency(@food.price_with_tax)
     %h2.mt-4.fs-4 商品説明
     %p= @food.description
     = simple_form_for :cart, url: add_food_cart_path do |f|
