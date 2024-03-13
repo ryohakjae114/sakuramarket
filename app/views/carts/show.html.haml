@@ -14,13 +14,14 @@
       %th
   %tbody
     - cart.each do |cart_item|
+      - food = food_from_food_id(cart_item['food_id'])
       %tr
-        %td= Food.find(cart_item['food_id']).name
-        %td= Food.find(cart_item['food_id']).price_with_tax
-        = simple_form_for :cart, url: update_food_count_carts_path do |f|
+        %td= food.name
+        %td= food.price_with_tax
+        = simple_form_for :cart, url: update_food_count_cart_path do |f|
           %td= f.input :number, label: false, as: :integer, input_html: { value: cart_item['number'] }, wrapper_html: { class: 'w-50' }
           .d-none
             = f.input :food_id, input_html: { value: cart_item['food_id'] }
           %td= f.submit '数量を変更', class: 'btn btn-outline-dark'
         %td= food_total_price_with_tax(cart_item['food_id'])
-        %td= button_to '削除', destroy_food_carts_path, class: 'btn btn-danger', method: :delete, params: {food_id: Food.find(cart_item['food_id']).id}, data: { turbo_confirm: "カートから削除しますか？" }
+        %td= button_to '削除', destroy_food_cart_path, class: 'btn btn-danger', method: :delete, params: {food_id: food.id}, data: { turbo_confirm: "カートから削除しますか？" }

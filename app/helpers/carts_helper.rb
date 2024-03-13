@@ -3,7 +3,7 @@ module CartsHelper
     session[:cart] ||= []
   end
 
-  def add_to_cart(food_id, number)
+  def add_food_to_cart(food_id, number)
     cart.each do |cart_item|
       if cart_item['food_id'] == food_id
         cart_item['number'] += number
@@ -13,7 +13,7 @@ module CartsHelper
     cart << { food_id: food_id.to_i, number: number.to_i }
   end
 
-  def edit_food_count(food_id, number)
+  def update_food_count_in_cart(food_id, number)
     cart.each do |cart_item|
       if cart_item['food_id'] == food_id
         cart_item['number'] = number
@@ -22,7 +22,7 @@ module CartsHelper
     end
   end
 
-  def delete_food(food_id)
+  def destroy_food_in_cart(food_id)
     cart.each do |cart_item|
       if cart_item['food_id'] == food_id
         cart.delete(cart_item)
@@ -37,5 +37,9 @@ module CartsHelper
         return Food.find(cart_item['food_id']).price_with_tax * cart_item['number']
       end
     end
+  end
+
+  def food_from_food_id(food_id)
+    Food.find(food_id)
   end
 end

@@ -14,6 +14,7 @@ class Purchase < ApplicationRecord
 
   def save_with_purchase_details!(purchase_details)
     transaction do
+      self.paid_at = Time.current
       self.save!
       purchase_details.each { |purchase_detail| purchase_detail.save! }
     end

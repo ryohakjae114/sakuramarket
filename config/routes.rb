@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
   resources :foods, only: %i[ index show ]
-  resources :carts do
+  resource :cart, only: :show do
     collection do
       post :add_food
       post :update_food_count
