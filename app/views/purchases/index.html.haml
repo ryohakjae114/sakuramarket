@@ -12,7 +12,7 @@
     - @purchases.each do |purchase|
       %tr
         %td= link_to purchase.id, purchase_path(purchase)
-        %td= purchase.paid_at
+        %td= l purchase.paid_at
         %td= purchase.delivery_on
         %td= "#{purchase.delivery_time_zone.gsub('-', '時~')}時"
         %td= number_to_currency(purchase.total_price)
