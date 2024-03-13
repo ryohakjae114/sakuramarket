@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe '商品管理' do
   context '管理者ログイン時' do

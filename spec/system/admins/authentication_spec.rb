@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe '管理者認証' do
   let!(:admin) { create(:admin) }

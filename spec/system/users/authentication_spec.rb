@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe 'ユーザ認証' do
   describe 'アカウント作成' do
