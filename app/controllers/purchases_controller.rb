@@ -1,23 +1,24 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: %i[ new create show]
+  before_action :authenticate_user!
+  before_action :set_purchase, only: %i[ show]
 
   def index
     @purchases = current_user.purchases.where.not(paid_at: nil).order(:paid_at)
   end
 
   def new
-    @cart_details = @purchase.purchase_details.order(:id)
+    @purchase = current_user.purchases.build
+    @purchase_details = cart.map { |cart_item| @purchase.purchase_details.build(food_id: cart_item['food_id'], number: cart_item['number']) }
   end
 
   def create
+    @purchase = current_user.purchases.build(purchase_params)
     @purchase.paid_at = Time.current
-    if @purchase.purchase_details.present? && @purchase.update(purchase_params)
-      flash[:notice] = '購入しました。'
-      redirect_to root_url
-    else
-      flash[:danger] = '購入に失敗しました。'
-      redirect_to root_url
-    end
+      @purchase_details = cart.map { |cart_item| @purchase.purchase_details.build(food_id: cart_item['food_id'], number: cart_item['number']) }
+    @purchase.save_with_purchase_details!(@purchase_details)
+    session.delete(:cart)
+    flash[:notice] = '購入しました。'
+    redirect_to root_url
   end
 
   def show
@@ -26,7 +27,7 @@ class PurchasesController < ApplicationController
   private
 
   def set_purchase
-    @purchase = current_user.purchases.find(params[:id] || params[:purchase][:id].to_i)
+    @purchase = current_user.purchases.find(params[:id])
   end
 
   def purchase_params

@@ -6,6 +6,7 @@ class FoodsController < ApplicationController
   end
 
   def show
+    # TODO　セッションで管理できるようになれば削除する
     @cart_detail =
       if current_user&.include_in_cart?(@food)
           current_user.cart.purchase_details.find_by(food_id: @food.id)

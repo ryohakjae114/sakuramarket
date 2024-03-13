@@ -23,7 +23,7 @@ ja:
         description: '商品説明'
         displayed: '購入画面に表示する'
         position: '並び順'
-      purchase_detail:
+      cart:
         number: '数量'
       purchase:
         delivery_on: '配送希望日'

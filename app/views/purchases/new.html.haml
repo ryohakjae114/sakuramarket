@@ -16,12 +16,12 @@
       %th 数量
       %th 価格(税込)
   %tbody
-    - @cart_details.each do |cart_detail|
+    - @purchase_details.each do |purchase_detail|
       %tr
-        %td= cart_detail.food.name
-        %td= cart_detail.food.price_with_tax
-        %td= cart_detail.number
-        %td= cart_detail.total_price_with_tax
+        %td= purchase_detail.food.name
+        %td= purchase_detail.food.price_with_tax
+        %td= purchase_detail.number
+        %td= purchase_detail.total_price_with_tax
 
 = simple_form_for @purchase, url: purchases_path, method: :post do |f|
   = f.input :delivery_on, collection: Purchase.dates_of_delivery_available, include_blank: false

@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     end
   end
   resources :foods, only: %i[ index show ]
+  resources :carts do
+    collection do
+      post :add_food
+      post :update_food_count
+      delete :destroy_food
+    end
+  end
   resources :cart_details, only: %i[ index create update destroy] do
     member do
       patch :add_number

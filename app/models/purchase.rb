@@ -12,6 +12,13 @@ class Purchase < ApplicationRecord
 
   validate :date_delivery_not_available
 
+  def save_with_purchase_details!(purchase_details)
+    transaction do
+      self.save!
+      purchase_details.each { |purchase_detail| purchase_detail.save! }
+    end
+  end
+
   def self.dates_of_delivery_available
     (FIRST_DAY_OF_DELIVERY_AVAILABLE..LAST_DAY_OF_DELIVERY_AVAILABLE).map { |i| i.business_days.after.to_date }
   end
