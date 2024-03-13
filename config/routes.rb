@@ -25,11 +25,6 @@ Rails.application.routes.draw do
       delete :destroy_food
     end
   end
-  resources :cart_details, only: %i[ index create update destroy] do
-    member do
-      patch :add_number
-    end
-  end
   resources :purchases, only: %i[ index new create show ]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
