@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'カート機能' do
   let(:user) { create(:user) }
@@ -26,7 +27,8 @@ RSpec.describe 'カート機能' do
         fill_in '数量', with: 10
         click_button 'カートに追加'
         visit cart_path
-        expect(page).to have_content(11*food.price_with_tax)
+        save_and_open_page
+        expect(page).to have_content(number_to_currency(11*food.price_with_tax))
       end
     end
 
@@ -41,7 +43,7 @@ RSpec.describe 'カート機能' do
         visit cart_path
         fill_in 'cart_number', with: 30
         click_button '数量を変更'
-        expect(page).to have_content(30*food.price_with_tax)
+        expect(page).to have_content(number_to_currency(30*food.price_with_tax))
       end
     end
 

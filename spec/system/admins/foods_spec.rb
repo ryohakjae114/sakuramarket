@@ -20,7 +20,7 @@ RSpec.describe '商品管理' do
     describe '商品一覧' do
       let!(:food) { create(:food) }
       it '商品一覧画面を閲覧できること' do
-        visit admins_foods_path
+        visit admins_root_path
         expect(page).to have_content(food.name)
       end
     end

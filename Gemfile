@@ -1,7 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby '3.2.2'
-gem 'rails', '7.1.3.2'
+gem 'rails', '~> 7.1'
 
 gem 'acts_as_list'
 gem 'bootsnap', require: false
@@ -25,13 +24,13 @@ group :development, :test do
 end
 
 group :development do
+  gem 'dockerfile-rails', '>= 1.6'
+  gem 'sgcop', github: 'SonicGarden/sgcop', require: false
   gem 'web-console'
 end
 
 group :test do
+  gem 'capybara'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'capybara'
 end
-
-gem "dockerfile-rails", ">= 1.6", :group => :development

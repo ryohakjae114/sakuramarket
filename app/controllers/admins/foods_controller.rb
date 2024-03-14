@@ -4,15 +4,6 @@ class Admins::FoodsController < AdminsController
     @foods = Food.all.order(:position)
   end
 
-  def move_higher
-    @food.move_higher
-    redirect_to admins_foods_url
-  end
-
-  def move_lower
-    @food.move_lower
-    redirect_to admins_foods_url
-  end
   def new
     @food = Food.new
   end
@@ -44,6 +35,16 @@ class Admins::FoodsController < AdminsController
   def destroy
     @food.destroy!
     flash[:notice] = '削除しました。'
+    redirect_to admins_foods_url
+  end
+
+  def move_higher
+    @food.move_higher
+    redirect_to admins_foods_url
+  end
+
+  def move_lower
+    @food.move_lower
     redirect_to admins_foods_url
   end
 

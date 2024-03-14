@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
-
-  helper_method :cart
-
+  helper_method :cart, :food_from_food_id, :food_total_price_with_tax
   def show
   end
 
