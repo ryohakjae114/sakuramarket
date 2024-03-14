@@ -7,18 +7,13 @@ class Purchase < ApplicationRecord
 
   enumerize :delivery_time_zone, in: TIME_ZONES_DELIVERY_AVAILABLE
 
-  has_many :purchase_details, dependent: :destroy
   belongs_to :user
+  has_many :purchase_details, dependent: :destroy
+  accepts_nested_attributes_for :purchase_details, allow_destroy: true
 
   validate :date_delivery_not_available
 
-  def save_with_purchase_details!(purchase_details)
-    transaction do
-      self.paid_at = Time.current
-      self.save!
-      purchase_details.each { |purchase_detail| purchase_detail.save! }
-    end
-  end
+  before_save -> { self.paid_at = Time.current }
 
   def self.dates_of_delivery_available
     (FIRST_DAY_OF_DELIVERY_AVAILABLE..LAST_DAY_OF_DELIVERY_AVAILABLE).map { |i| i.business_days.after.to_date }

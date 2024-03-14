@@ -14,7 +14,10 @@ class PurchasesController < ApplicationController
     @purchase.delivery_on = purchase_params['delivery_on']
     @purchase.delivery_time_zone = purchase_params['delivery_time_zone']
     @purchase.address = purchase_params['address']
-    @purchase.save_with_purchase_details!(@purchase_details)
+    @purchase.assign_attributes(delivery_on: purchase_params['delivery_on'],
+                                delivery_time_zone: purchase_params['delivery_time_zone'],
+                                address: purchase_params['address'])
+    @purchase.save!
     session.delete(:cart)
     flash[:notice] = '購入しました。'
     redirect_to root_url
@@ -35,7 +38,9 @@ class PurchasesController < ApplicationController
 
   def build_purchase_and_purchase_detail
     @purchase = current_user.purchases.build
-    @purchase_details = cart.map { |cart_item| @purchase.purchase_details.build(food_id: cart_item['food_id'], number: cart_item['number']) }
+    @purchase_details = cart.map do |cart_item|
+      @purchase.purchase_details.build(food_id: cart_item['food_id'], number: cart_item['number'])
+    end
     redirect_to root_url if @purchase_details.empty?
   end
 end
