@@ -5,8 +5,7 @@ class FoodsController < ApplicationController
     @foods = Food.displayed.order(:position)
   end
 
-  def show
-  end
+  def show; end
 
   private
 

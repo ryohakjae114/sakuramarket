@@ -1,5 +1,5 @@
 class Admins::FoodsController < AdminsController
-  before_action :set_food, only: %i[ edit update destroy move_higher move_lower ]
+  before_action :set_food, only: %i[edit update destroy move_higher move_lower]
   def index
     @foods = Food.all.order(:position)
   end
@@ -19,8 +19,7 @@ class Admins::FoodsController < AdminsController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @food.update(food_params)

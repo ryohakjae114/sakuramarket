@@ -3,7 +3,7 @@ class Purchase < ApplicationRecord
 
   FIRST_DAY_OF_DELIVERY_AVAILABLE = 3
   LAST_DAY_OF_DELIVERY_AVAILABLE = 14
-  TIME_ZONES_DELIVERY_AVAILABLE = %w[8-12 12-14 14-16 16-18 18-20 20-21]
+  TIME_ZONES_DELIVERY_AVAILABLE = %w[8-12 12-14 14-16 16-18 18-20 20-21].freeze
 
   enumerize :delivery_time_zone, in: TIME_ZONES_DELIVERY_AVAILABLE
 
@@ -28,20 +28,20 @@ class Purchase < ApplicationRecord
   end
 
   def total_purchase_details_price
-    self.purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.total_price_with_tax }
+    purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.total_price_with_tax }
   end
 
   def postage_price
-    (self.purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.number } / 5.0).ceil * 600
+    (purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.number } / 5.0).ceil * 600
   end
 
   def charge_price
     case total_purchase_details_price
-    when 0..10000
+    when 0..10_000
       (300 * (1 + TAX_RATE)).floor
-    when 10000..30000
+    when 10_000..30_000
       (400 * (1 + TAX_RATE)).floor
-    when 30000..100000
+    when 30_000..100_000
       (600 * (1 + TAX_RATE)).floor
     else
       (1000 * (1 + TAX_RATE)).floor

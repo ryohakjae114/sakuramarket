@@ -1,19 +1,18 @@
+# frozen_string_literal: true
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :build_purchase_and_purchase_detail, only: %i[ new create ]
+  before_action :build_purchase_and_purchase_detail, only: %i[new create]
   before_action :set_purchase, only: :show
+
+  helper_method :cart
 
   def index
     @purchases = current_user.purchases.order(:paid_at)
   end
 
-  def new
-  end
+  def new; end
 
   def create
-    @purchase.delivery_on = purchase_params['delivery_on']
-    @purchase.delivery_time_zone = purchase_params['delivery_time_zone']
-    @purchase.address = purchase_params['address']
     @purchase.assign_attributes(delivery_on: purchase_params['delivery_on'],
                                 delivery_time_zone: purchase_params['delivery_time_zone'],
                                 address: purchase_params['address'])
@@ -23,8 +22,7 @@ class PurchasesController < ApplicationController
     redirect_to root_url
   end
 
-  def show
-  end
+  def show; end
 
   private
 
