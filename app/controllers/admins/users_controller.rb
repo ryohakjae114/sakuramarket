@@ -8,7 +8,7 @@ class Admins::UsersController < AdminsController
   def destroy
     @user.destroy!
     flash[:notice] = 'ユーザを削除しました。'
-    redirect_to admins_users_path
+    redirect_to admins_users_url
   end
 
   private

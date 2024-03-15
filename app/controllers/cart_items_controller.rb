@@ -10,53 +10,38 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    update_food_count_in_cart(params[:cart][:food_id].to_i, params[:cart][:quantity].to_i)
+    update_food_count_in_cart(params[:index], params[:cart][:quantity])
     flash[:notice] = 'カート情報を更新しました。'
-    redirect_to cart_items_path
+    redirect_to cart_items_url
   end
 
   def destroy
-    destroy_food_in_cart(params[:food_id].to_i)
+    destroy_food_in_cart(params[:index])
     flash[:notice] = 'カートから削除しました。'
-    redirect_to cart_items_path
+    redirect_to cart_items_url
   end
 
   private
 
   def add_food_to_cart(food_id, quantity)
-    cart.each do |cart_item|
-      if cart_item['food_id'] == food_id
-        cart_item['quantity'] += quantity
-        return
-      end
-    end
-    cart << { food_id: food_id.to_i, quantity: quantity.to_i }
-  end
-
-  def update_food_count_in_cart(food_id, quantity)
-    cart.each do |cart_item|
-      if cart_item['food_id'] == food_id
-        cart_item['quantity'] = quantity
-        return
-      end
+    food_index_in_cart = cart.find_index { |cart_item| cart_item['food_id'] == food_id.to_i }
+    if food_index_in_cart.present?
+      cart[food_index_in_cart]['quantity'] += quantity.to_i
+    else
+      cart << { food_id: food_id.to_i, quantity: quantity.to_i }
     end
   end
 
-  def destroy_food_in_cart(food_id)
-    cart.each do |cart_item|
-      if cart_item['food_id'] == food_id
-        cart.delete(cart_item)
-        return
-      end
-    end
+  def update_food_count_in_cart(index, quantity)
+    cart[index.to_i]['quantity'] = quantity.to_i
   end
 
-  def food_total_price_with_tax(food_id)
-    cart.each do |cart_item|
-      if cart_item['food_id'] == food_id
-        return Food.find(cart_item['food_id']).price_with_tax * cart_item['quantity']
-      end
-    end
+  def destroy_food_in_cart(index)
+    cart.delete_at(index.to_i)
+  end
+
+  def food_total_price_with_tax(index)
+    Food.find(cart[index.to_i]['food_id']).price_with_tax * cart[index.to_i]['quantity']
   end
 
   def food_from_food_id(food_id)
