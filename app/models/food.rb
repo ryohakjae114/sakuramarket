@@ -7,7 +7,7 @@ class Food < ApplicationRecord
   scope :displayed, -> { where(displayed: true) }
 
   def price_with_tax
-    (price_without_tax * (1+TAX_RATE)).floor
+    (price_without_tax * (1 + TAX_RATE)).floor
   end
 
   validates :name, presence: true

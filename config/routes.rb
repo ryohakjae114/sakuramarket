@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'foods#index'
   devise_for :admins, controllers: {
-    sessions: 'admins/sessions'
+    sessions: 'admins/sessions',
   }
   namespace :admins do
     root 'foods#index'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
   }
   resources :foods, only: %i[index show]
   resource :cart, only: :show do

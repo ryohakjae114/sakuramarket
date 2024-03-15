@@ -1,5 +1,5 @@
 class Admins::UsersController < AdminsController
-  before_action :set_food, only: %i[ destroy ]
+  before_action :set_food, only: %i[destroy]
 
   def index
     @users = User.all.order(:id)

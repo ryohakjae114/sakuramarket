@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe '購入機能' do
   let(:user) { create(:user) }
+
   context 'ユーザログイン時' do
     let!(:food) { create(:food) }
+
     before do
       sign_in user
       visit food_path(food)
@@ -20,7 +22,6 @@ RSpec.describe '購入機能' do
         expect(page).to have_selector('tbody')
       end
     end
-
 
     describe '購入詳細' do
       it '購入詳細画面を閲覧できること' do

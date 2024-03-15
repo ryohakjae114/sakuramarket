@@ -17,6 +17,7 @@ RSpec.describe 'ユーザ認証' do
 
   describe 'ログイン' do
     let!(:user) { create(:user) }
+
     it 'ログインできること' do
       visit new_user_session_path
       fill_in 'Eメール', with: 'test@example.com'
@@ -28,6 +29,7 @@ RSpec.describe 'ユーザ認証' do
 
   describe 'ログアウト' do
     let(:user) { create(:user) }
+
     it 'ログアウトできること' do
       sign_in user
       visit root_path
@@ -38,6 +40,7 @@ RSpec.describe 'ユーザ認証' do
 
   describe 'アカウント編集' do
     let!(:user) { create(:user) }
+
     it 'アカウント編集画面を閲覧できること' do
       sign_in user
       visit edit_user_registration_path

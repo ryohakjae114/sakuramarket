@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   helper_method :cart, :food_from_food_id, :food_total_price_with_tax
-  
+
   def show; end
 
   def add_food
@@ -14,7 +14,6 @@ class CartsController < ApplicationController
     flash[:notice] = 'カート情報を更新しました。'
     redirect_to cart_path
   end
-
 
   def destroy_food
     destroy_food_in_cart(params[:food_id].to_i)

@@ -8,6 +8,7 @@ RSpec.describe 'ユーザ管理' do
 
     describe 'ユーザ一覧' do
       let!(:user) { create(:user) }
+
       it 'ユーザを一覧できること' do
         visit admins_users_path
         expect(page).to have_content(user.last_name)
@@ -16,12 +17,13 @@ RSpec.describe 'ユーザ管理' do
 
     describe 'ユーザ削除' do
       let!(:user) { create(:user) }
+
       it 'ユーザを削除できること' do
         visit admins_users_path
         expect(page).to have_content(user.last_name)
         click_button '削除'
         expect(page).to have_content('ユーザを削除しました。')
-        expect(page).to_not have_content(user.last_name)
+        expect(page).not_to have_content(user.last_name)
       end
     end
   end

@@ -13,12 +13,13 @@ RSpec.describe '商品管理' do
         fill_in '金額(税抜)', with: '200'
         click_button '登録'
         expect(page).to have_content '登録しました。'
-        # TODO 一覧画面にデータが追加されたことを確認する
+        # TODO: 一覧画面にデータが追加されたことを確認する
       end
     end
 
     describe '商品一覧' do
       let!(:food) { create(:food) }
+
       it '商品一覧画面を閲覧できること' do
         visit admins_root_path
         expect(page).to have_content(food.name)
@@ -27,6 +28,7 @@ RSpec.describe '商品管理' do
 
     describe '商品情報変更' do
       let!(:food) { create(:food) }
+
       it '商品情報を変更できること' do
         visit edit_admins_food_path(food)
         fill_in '商品名', with: 'はっちゃん'
@@ -37,6 +39,7 @@ RSpec.describe '商品管理' do
 
     describe '商品削除' do
       let(:food) { create(:food) }
+
       it '商品を削除できること' do
         visit edit_admins_food_path(food)
         click_button '削除'

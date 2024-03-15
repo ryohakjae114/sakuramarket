@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :build_purchase_and_purchase_detail, only: %i[new create]
