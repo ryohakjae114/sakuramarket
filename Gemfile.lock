@@ -153,8 +153,6 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml-lint (0.999.999)
-      haml_lint
     haml-rails (2.1.0)
       actionpack (>= 5.1)
       activesupport (>= 5.1)
@@ -387,8 +385,8 @@ DEPENDENCIES
   dockerfile-rails (>= 1.6)
   enumerize
   factory_bot_rails
-  haml-lint
   haml-rails
+  haml_lint
   jsbundling-rails
   pg
   puma

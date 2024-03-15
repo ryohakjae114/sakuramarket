@@ -1,7 +1,7 @@
 class Admins::FoodsController < AdminsController
   before_action :set_food, only: %i[edit update destroy move_higher move_lower]
   def index
-    @foods = Food.all.order(:position)
+    @foods = Food.order(:position)
   end
 
   def new

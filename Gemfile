@@ -25,6 +25,7 @@ end
 
 group :development do
   gem 'dockerfile-rails', '>= 1.6'
+  gem 'haml_lint'
   gem 'sgcop', github: 'SonicGarden/sgcop'
   gem 'web-console'
 end
