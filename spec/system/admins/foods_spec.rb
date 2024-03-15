@@ -13,7 +13,6 @@ RSpec.describe '商品管理' do
         fill_in '金額(税抜)', with: '200'
         click_button '登録'
         expect(page).to have_content '登録しました。'
-        # TODO: 一覧画面にデータが追加されたことを確認する
       end
     end
 

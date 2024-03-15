@@ -13,15 +13,15 @@
       %th 価格(税込)
       %th
   %tbody
-    - cart.each do |cart_item|
+    - cart.each_with_index do |cart_item, cart_item_index|
       - food = food_from_food_id(cart_item['food_id'])
       %tr
         %td= food.name
         %td= number_to_currency(food.price_with_tax)
-        = simple_form_for :cart, url: update_food_count_cart_path do |f|
+        = simple_form_for :cart, url: cart_item_path(cart_item_index), method: :patch do |f|
           %td= f.input :quantity, label: false, as: :integer, input_html: { value: cart_item['quantity'] }, wrapper_html: { class: 'w-50' }
           .d-none
             = f.input :food_id, input_html: { value: cart_item['food_id'] }
           %td= f.submit '数量を変更', class: 'btn btn-outline-dark'
         %td= number_to_currency(food_total_price_with_tax(cart_item['food_id']))
-        %td= button_to '削除', destroy_food_cart_path, class: 'btn btn-danger', method: :delete, params: {food_id: food.id}, data: { turbo_confirm: "カートから削除しますか？" }
+        %td= button_to '削除', cart_items_path, class: 'btn btn-danger', method: :delete, params: {food_id: food.id}, data: { turbo_confirm: "カートから削除しますか？" }

@@ -25,7 +25,7 @@ end
 
 group :development do
   gem 'dockerfile-rails', '>= 1.6'
-  gem 'sgcop', github: 'SonicGarden/sgcop', require: false
+  gem 'sgcop', github: 'SonicGarden/sgcop'
   gem 'web-console'
 end
 

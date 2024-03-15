@@ -10,7 +10,7 @@
     %p= number_to_currency(@food.price_with_tax)
     %h2.mt-4.fs-4 商品説明
     %p= @food.description
-    = simple_form_for :cart, url: add_food_cart_path do |f|
+    = simple_form_for :cart, url: cart_items_path do |f|
       = f.input :quantity, as: :integer, wrapper_html: { class: 'd-inline-block' }, input_html: { value: 1, min: 1 }
       .d-none
         = f.input :food_id, as: :hidden, class: 'd-none', input_html: { value: @food.id }

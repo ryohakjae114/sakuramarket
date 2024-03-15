@@ -19,13 +19,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
   }
   resources :foods, only: %i[index show]
-  resource :cart, only: :show do
-    collection do
-      post :add_food
-      post :update_food_count
-      delete :destroy_food
-    end
-  end
+  resources :cart_items, param: :index, only: %i[index create update destroy]
   resources :purchases, only: %i[index new create show]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

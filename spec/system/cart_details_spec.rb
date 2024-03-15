@@ -17,7 +17,7 @@ RSpec.describe 'カート機能' do
         visit food_path(food)
         fill_in '数量', with: '10'
         click_button 'カートに追加'
-        visit cart_path
+        visit cart_items_path
         expect(page).to have_content(food.name)
       end
 
@@ -28,8 +28,7 @@ RSpec.describe 'カート機能' do
         visit food_path(food)
         fill_in '数量', with: 10
         click_button 'カートに追加'
-        visit cart_path
-        save_and_open_page
+        visit cart_items_path
         expect(page).to have_content(number_to_currency(11 * food.price_with_tax))
       end
     end
@@ -41,9 +40,9 @@ RSpec.describe 'カート機能' do
         visit food_path(food)
         fill_in '数量', with: '10'
         click_button 'カートに追加'
-        visit cart_path
+        visit cart_items_path
         expect(page).to have_content(food.name)
-        visit cart_path
+        visit cart_items_path
         fill_in 'cart_quantity', with: 30
         click_button '数量を変更'
         expect(page).to have_content(number_to_currency(30 * food.price_with_tax))
@@ -57,7 +56,7 @@ RSpec.describe 'カート機能' do
         visit food_path(food)
         fill_in '数量', with: '10'
         click_button 'カートに追加'
-        visit cart_path
+        visit cart_items_path
         click_on '削除'
         expect(page).not_to have_content(food.name)
       end

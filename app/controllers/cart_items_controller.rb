@@ -1,24 +1,24 @@
-class CartsController < ApplicationController
+class CartItemsController < ApplicationController
   helper_method :cart, :food_from_food_id, :food_total_price_with_tax
 
-  def show; end
+  def index; end
 
-  def add_food
+  def create
     add_food_to_cart(params[:cart][:food_id].to_i, params[:cart][:quantity].to_i)
     flash[:notice] = 'カートに追加しました。'
     redirect_to root_url
   end
 
-  def update_food_count
+  def update
     update_food_count_in_cart(params[:cart][:food_id].to_i, params[:cart][:quantity].to_i)
     flash[:notice] = 'カート情報を更新しました。'
-    redirect_to cart_path
+    redirect_to cart_items_path
   end
 
-  def destroy_food
+  def destroy
     destroy_food_in_cart(params[:food_id].to_i)
     flash[:notice] = 'カートから削除しました。'
-    redirect_to cart_path
+    redirect_to cart_items_path
   end
 
   private
