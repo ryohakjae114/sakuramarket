@@ -37,7 +37,7 @@ class PurchasesController < ApplicationController
   def build_purchase_and_purchase_detail
     @purchase = current_user.purchases.build
     @purchase_details = cart.map do |cart_item|
-      @purchase.purchase_details.build(food_id: cart_item['food_id'], number: cart_item['number'])
+      @purchase.purchase_details.build(food_id: cart_item['food_id'], quantity: cart_item['quantity'])
     end
     redirect_to root_url if @purchase_details.empty?
   end

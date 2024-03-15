@@ -32,7 +32,7 @@ class Purchase < ApplicationRecord
   end
 
   def postage_price
-    (purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.number } / 5.0).ceil * 600
+    (purchase_details.inject(0) { |sum, purchase_detail| sum + purchase_detail.quantity } / 5.0).ceil * 600
   end
 
   def charge_price

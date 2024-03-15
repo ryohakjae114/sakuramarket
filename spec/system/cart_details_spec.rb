@@ -41,7 +41,7 @@ RSpec.describe 'カート機能' do
         visit cart_path
         expect(page).to have_content(food.name)
         visit cart_path
-        fill_in 'cart_number', with: 30
+        fill_in 'cart_quantity', with: 30
         click_button '数量を変更'
         expect(page).to have_content(number_to_currency(30*food.price_with_tax))
       end
