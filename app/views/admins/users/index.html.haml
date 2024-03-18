@@ -19,4 +19,4 @@
         %td= user.address
         %td= user.created_at
         %td= user.updated_at
-        %td= button_to '削除', admins_user_path(user), class: 'btn btn-danger', method: :delete, data: { turbo_confirm: "ユーザを削除しますか？" }
+        %td= button_to '削除', admins_user_path(user), class: 'btn btn-danger', method: :delete, data: { turbo_confirm: 'ユーザを削除しますか？' }

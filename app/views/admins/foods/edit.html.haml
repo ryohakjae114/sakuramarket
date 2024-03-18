@@ -1,7 +1,7 @@
 .col-6.mx-auto
   .d-flex
     %h1.me-auto 商品詳細画面
-    = button_to admins_food_path(@food), { class: 'btn btn-danger', method: :delete, data: { turbo_confirm: "本当に削除しますか？" } } do
+    = button_to admins_food_path(@food), { class: 'btn btn-danger', method: :delete, data: { turbo_confirm: '本当に削除しますか？' } } do
       削除
       %i.fa-solid.fa-trash
   %p.mt-5 現在の商品写真

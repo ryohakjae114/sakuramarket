@@ -24,4 +24,4 @@
             = f.input :food_id, input_html: { value: cart_item['food_id'] }
           %td= f.submit '数量を変更', class: 'btn btn-outline-dark'
         %td= number_to_currency(food_total_price_with_tax(cart_item_index))
-        %td= button_to '削除', cart_item_path(cart_item_index), class: 'btn btn-danger', method: :delete, params: {food_id: food.id}, data: { turbo_confirm: "カートから削除しますか？" }
+        %td= button_to '削除', cart_item_path(cart_item_index), class: 'btn btn-danger', method: :delete, params: { food_id: food.id }, data: { turbo_confirm: 'カートから削除しますか？' }
