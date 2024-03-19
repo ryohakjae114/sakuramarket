@@ -5,7 +5,7 @@ RSpec.describe '商品' do
     let!(:food) { create(:food) }
 
     it '商品一覧画面を閲覧できること' do
-      visit foods_path
+      visit root_path
       expect(page).to have_css('.card')
     end
   end

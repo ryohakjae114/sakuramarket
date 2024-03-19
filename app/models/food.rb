@@ -1,8 +1,13 @@
 class Food < ApplicationRecord
-  has_many :purchase_details
+  has_one_attached :image do |attachable|
+    attachable.variant :display, resize_to_limit: [300, 300]
+  end
+  has_many :purchase_details, dependent: :nullify
 
   acts_as_list
-  mount_uploader :image, ImageUploader
+
+  validates :name, presence: true
+  validates :price_without_tax, presence: true
 
   scope :displayed, -> { where(displayed: true) }
 
@@ -10,6 +15,11 @@ class Food < ApplicationRecord
     (price_without_tax * (1 + TAX_RATE)).floor
   end
 
-  validates :name, presence: true
-  validates :price_without_tax, presence: true
+  def variant_saved_or_default_image
+    if image.representable?
+      image.variant(:display)
+    else
+      'no_image.png'
+    end
+  end
 end

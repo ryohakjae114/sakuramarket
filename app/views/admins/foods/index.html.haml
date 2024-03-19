@@ -4,7 +4,7 @@
   - @foods.each do |food|
     .col-4.mt-5
       .card
-        = image_tag(food.image.url, class: 'card-img-top foods-index__card-image')
+        = image_tag(food.variant_saved_or_default_image, class: 'card-img-top foods-index__card-image')
         .card-body.border-top
           - if food.displayed
             %span.badge.text-bg-success.mb-2 公開中

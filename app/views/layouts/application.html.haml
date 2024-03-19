@@ -11,13 +11,13 @@
   %body
     %nav.navbar.navbar-expand-lg.bg-body-tertiary
       .container-fluid
-        = link_to 'サクラマーケット', foods_path, class: 'navbar-brand'
+        = link_to 'サクラマーケット', root_path, class: 'navbar-brand'
         %button.navbar-toggler{'aria-controls' => 'navbarNavDropdown', 'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation', 'data-bs-target' => '#navbarNavDropdown', 'data-bs-toggle' => 'collapse', type: 'button'}
           %span.navbar-toggler-icon
         #navbarNavDropdown.collapse.navbar-collapse
           %ul.navbar-nav.gap-3
             %li.nav-item
-            = link_to '商品', foods_path, class: 'nav-link'
+            = link_to '商品', root_path, class: 'nav-link'
             %li.nav-item
               = link_to 'カート', cart_items_path, class: 'nav-link'
             - if user_signed_in?

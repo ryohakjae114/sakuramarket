@@ -387,6 +387,7 @@ DEPENDENCIES
   factory_bot_rails
   haml-rails
   haml_lint
+  image_processing
   jsbundling-rails
   pg
   puma

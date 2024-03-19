@@ -5,7 +5,7 @@
       削除
       %i.fa-solid.fa-trash
   %p.mt-5 現在の商品写真
-  = image_tag(@food.image.url, class: 'w-25 mb-5')
+  = image_tag(@food.variant_saved_or_default_image, class: 'w-25 mb-5')
   = simple_form_for [:admins, @food] do |f|
     = f.input :image, label: '新しい商品写真'
     = f.input :name

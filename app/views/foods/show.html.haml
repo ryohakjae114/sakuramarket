@@ -2,7 +2,7 @@
 
 .mt-5.row
   .col-6
-    = image_tag @food.image.url, class: 'd-block w-75'
+    = image_tag @food.variant_saved_or_default_image, class: 'd-block w-75'
   .col-6.foods-show__text
     %h2.fs-4 商品名
     %p= @food.name
